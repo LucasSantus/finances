@@ -29,6 +29,10 @@ INSTALLED_APPS = [
 ]
 
 INSTALLED_APPS += [
+    'widget_tweaks',
+]
+
+INSTALLED_APPS += [
     'contas',
     'movimentacoes',
     'dashboard',

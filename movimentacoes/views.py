@@ -1,3 +1,9 @@
 from django.shortcuts import render
+from movimentacoes.forms import MovimentacaoForm
 
-# Create your views here.
+def criar_movimentacao(request):
+    form = MovimentacaoForm()
+    context = {
+        'form': form
+    }
+    return render(request, "criar_movimentacao.html", context)

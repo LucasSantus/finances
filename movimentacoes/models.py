@@ -1,6 +1,4 @@
-from typing import ValuesView
-from django.db import models
-from django.db.models.fields.related import ForeignKey
+from django.db import models, transaction
 
 class Tipo(models.IntegerChoices):
     RECEITA = 1, "Receita"
@@ -33,18 +31,18 @@ class Movimentacao(models.Model):
         verbose_name="Tipo da Movimentação"
     )
         
-    conta = ForeignKey(
+    conta = models.ForeignKey(
         'contas.Conta',
         on_delete = models.PROTECT,
         related_name = "conta_movimentacao",
         verbose_name = "Conta em que a movimentação ocorreu"
     )
     
-    categoria = ForeignKey(
+    categoria = models.ForeignKey(
         'movimentacoes.Categoria',
         on_delete = models.PROTECT,
         related_name = "categoria_movimentacao",
-        verbose_name = "Conta em que a movimentação ocorreu"
+        verbose_name = "Categoria em que a movimentação ocorreu"
     )
     
     liquidada = models.BooleanField(
@@ -67,6 +65,21 @@ class Movimentacao(models.Model):
     data = models.DateField(
         verbose_name = "Data da movimentação"
     )
+    
+    def save(self, *args, **kwargs):
+        if not self.liquidada:
+            try:
+                with transaction.atomic():
+                    self.conta.liquidar_movimentacao(
+                        self.tipo, self.valor
+                    )
+                    self.conta.save()
+                    self.liquidada = True
+            except Exception:
+                raise Exception(
+                    "Ocorreu uma falha. Por favor, tente novamente mais tarde"
+                )
+        super(Movimentacao, self).save(*args, **kwargs)
 
     class Meta:
         db_table = "movimentacao"
