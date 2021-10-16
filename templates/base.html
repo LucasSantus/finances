@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+
+<html lang="pt-br">
+
+{% load static %}
+
+<head>
+  <meta charset="utf-8">
+  <title>Django Finanças</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link rel="shortcut icon" href="{% static 'budget.png' %}" />
+  <link rel="stylesheet" href="{% static '/vendors/iconfonts/mdi/css/materialdesignicons.min.css' %}">
+  <link rel="stylesheet" href="{% static '/vendors/iconfonts/ionicons/dist/css/ionicons.css' %}">
+  <link rel="stylesheet" href="{% static '/vendors/iconfonts/flag-icon-css/css/flag-icon.min.css' %}">
+  <link rel="stylesheet" href="{% static '/vendors/css/vendor.bundle.base.css' %}">
+  <link rel="stylesheet" href="{% static '/vendors/css/vendor.bundle.addons.css' %}">
+  <link rel="stylesheet" href="{% static '/css/shared/style.css' %}">
+  <link rel="stylesheet" href="{% static '/css/demo_1/style.css' %}">
+</head>
+
+<body>
+  <div class="container-scroller">
+    <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+      <div class="text-center navbar-brand-wrapper d-flex align-items-top justify-content-center">
+        <a class="navbar-brand brand-logo" href="#">
+          <img src="{% static 'budget.png' %}" alt="logo" class="mt-3"> </a>
+        <a class="navbar-brand brand-logo-mini" href="#">
+          <img src="{% static 'budget.png' %}" alt="logo"> </a>
+      </div>
+
+      <div class="navbar-menu-wrapper d-flex align-items-center">
+        <ul class="navbar-nav">
+          <li class="nav-item font-weight-semibold">Django finanças</li>
+        </ul>
+
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item dropdown d-none d-xl-inline-block user-dropdown">
+            <a class="nav-link dropdown-toggle" id="UserDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
+              Sair
+            </a>
+            <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
+              <a class="dropdown-item" href="#">Sair da dashboard<i class="dropdown-item-icon ti-power-off"></i></a>
+            </div>
+          </li>
+        </ul>
+        <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+          <span class="mdi mdi-menu"></span>
+        </button>
+      </div>
+    </nav>
+
+    <div class="container-fluid page-body-wrapper">
+      <nav class="sidebar sidebar-offcanvas" id="sidebar">
+        <ul class="nav mt-5">
+          <li class="nav-item nav-category">Menu</li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <i class="menu-icon typcn typcn-document-text"></i>
+              <span class="menu-title">Início</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="main-panel">
+        <div class="content-wrapper">
+          
+            {% block content %}
+            {% endblock %}
+
+        </div>
+
+        <footer class="footer">
+          <div class="container-fluid clearfix">
+            <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © bootstrapdash.com
+              2020</span>
+            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center"> Free <a
+                href="https://www.bootstrapdash.com/bootstrap-admin-template/" target="_blank">Bootstrap admin
+                templates</a> from Bootstrapdash.com and Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></span>
+          </div>
+        </footer>
+      </div>
+    </div>
+  </div>
+  <script src="{% static '/vendors/js/vendor.bundle.base.js' %}"></script>
+  <script src="{% static '/vendors/js/vendor.bundle.addons.js' %}"></script>
+  <script src="{% static '/js/shared/off-canvas.js' %}"></script>
+  <script src="{% static '/js/shared/misc.js' %}"></script>
+  <script src="{% static '/js/shared/jquery.cookie.js' %}" type="text/javascript"></script>
+</body>
+
+</html>
