@@ -10,6 +10,7 @@
                 <h4 class="card-title mb-4">Criar nova movimentação</h4>
 
                 <form class="forms-sample" method="POST">
+                    {% csrf_token %}
                     <div class="row">
                         {% for campo in form %}
                             <div class="form-group col-sm-12 col-md-4">
